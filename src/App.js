@@ -24,3 +24,5 @@ const App = () => {
 };
 
 export default App;
+
+// TODO kontynuujemy jutro w auchowni :)
