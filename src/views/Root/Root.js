@@ -5,7 +5,7 @@ const Root = () => {
   return (
     <>
       <h1>Hello Bolek</h1>
-      <Button>CLOSE / SAVE</Button>
+      <Button width="500px">CLOSE / SAVE</Button>
       <Button secondary>Remove</Button>
     </>
   );
