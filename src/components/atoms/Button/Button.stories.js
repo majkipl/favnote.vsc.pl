@@ -23,14 +23,4 @@ export const Primary = () => {
   return <Button color={value}>Hello</Button>;
 };
 
-/*
-Primary.decorators = [
-  (Story) => (
-    <div style={{ margin: "5em" }}>
-      <Story />
-    </div>
-  ),
-];
-*/
-
 export const Secondary = () => <Button secondary>Hello</Button>;
