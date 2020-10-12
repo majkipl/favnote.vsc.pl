@@ -8,7 +8,7 @@ import twitterIcon from "assets/icons/twitter.svg";
 import styled from "styled-components";
 import ButtonIcon from "./ButtonIcon";
 
-const YellowBackground = styled.div`
+const BackgroundColorPrimary = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -21,9 +21,9 @@ export default {
   decorators: [
     withKnobs,
     (Story) => (
-      <YellowBackground>
+      <BackgroundColorPrimary>
         <Story />
-      </YellowBackground>
+      </BackgroundColorPrimary>
     ),
   ],
 };
@@ -33,3 +33,4 @@ export const Logout = () => <ButtonIcon icon={logoutIcon} />;
 export const Pen = () => <ButtonIcon icon={penIcon} />;
 export const Plus = () => <ButtonIcon icon={plusIcon} />;
 export const Twitter = () => <ButtonIcon icon={twitterIcon} />;
+export const Active = () => <ButtonIcon active icon={bulbIcon} />;
