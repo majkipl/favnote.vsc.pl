@@ -9,3 +9,6 @@ export default {
 };
 
 export const Normal = () => <Card>Hello</Card>;
+export const Note = () => <Card cardType="note">Hello</Card>;
+export const Twitter = () => <Card cardType="twitter">Hello</Card>;
+export const Article = () => <Card cardType="article">Hello</Card>;
