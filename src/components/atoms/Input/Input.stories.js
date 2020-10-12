@@ -4,7 +4,7 @@ import Input from "./Input";
 
 export default {
   component: Input,
-  title: "Input",
+  title: "Atoms/Input",
   decorators: [withKnobs],
 };
 
