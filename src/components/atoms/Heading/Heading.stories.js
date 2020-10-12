@@ -4,7 +4,7 @@ import Heading from "./Heading";
 
 export default {
   component: Heading,
-  title: "Heading",
+  title: "Atoms/Heading",
   decorators: [withKnobs],
 };
 

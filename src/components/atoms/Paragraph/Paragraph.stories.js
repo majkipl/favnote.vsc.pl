@@ -4,7 +4,7 @@ import Paragraph from "./Paragraph";
 
 export default {
   component: Paragraph,
-  title: "Paragraph",
+  title: "Atoms/Paragraph",
   decorators: [withKnobs],
 };
 

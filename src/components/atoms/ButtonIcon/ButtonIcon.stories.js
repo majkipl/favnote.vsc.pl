@@ -17,7 +17,7 @@ const BackgroundColorNote = styled.div`
 
 export default {
   component: ButtonIcon,
-  title: "ButtonIcon",
+  title: "Atoms/ButtonIcon",
   decorators: [
     withKnobs,
     (Story) => (
