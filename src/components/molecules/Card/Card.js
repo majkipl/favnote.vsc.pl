@@ -68,27 +68,19 @@ const StyledLinkButton = styled.a`
   transform: translateY(-50%);
 `;
 
-const Card = ({ cardType }) => {
+const Card = ({ cardType, title, created, twitterName, articleUrl, content }) => {
   return (
     <StyledWrapper>
       <InnerWrapper activeColor={cardType}>
-        <StyleHeading>Hello amarello</StyleHeading>
-        <DateInfo>3 days</DateInfo>
+        <StyleHeading>{title}</StyleHeading>
+        <DateInfo>{created}</DateInfo>
         {cardType === "twitter" && (
-          <StyledAvatar src="https://unavatar.now.sh/twitter/startrekmovie" />
+          <StyledAvatar src={`http://twivatar.glitch.me/${twitterName}`} />
         )}
-        {cardType === "article" && (
-          <StyledLinkButton href="https://intl.startrek.com/" target="_blank" />
-        )}
+        {cardType === "article" && <StyledLinkButton href={articleUrl} target="_blank" />}
       </InnerWrapper>
       <InnerWrapper flex>
-        <Paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse blandit aliquet diam
-          dignissim posuere. Donec tristique accumsan ipsum, et posuere ipsum viverra ut. Mauris
-          aliquet turpis sed condimentum tincidunt. Cras vel lectus et ipsum vestibulum convallis
-          nec ut erat. Praesent tristique vel nisi id lobortis. Donec venenatis in risus at iaculis.
-          Praesent quis egestas massa. Sed et dictum sem. Quisque a felis nisi.
-        </Paragraph>
+        <Paragraph>{content}</Paragraph>
         <Button secondary>REMOVE</Button>
       </InnerWrapper>
     </StyledWrapper>
@@ -97,10 +89,17 @@ const Card = ({ cardType }) => {
 
 Card.propTypes = {
   cardType: PropTypes.oneOf(["note", "twitter", "article"]),
+  title: PropTypes.string.isRequired,
+  created: PropTypes.string.isRequired,
+  twitterName: PropTypes.string,
+  articleUrl: PropTypes.string,
+  content: PropTypes.string.isRequired,
 };
 
 Card.defaultProps = {
   cardType: "note",
+  twitterName: null,
+  articleUrl: null,
 };
 
 export default Card;
