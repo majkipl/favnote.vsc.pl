@@ -8,11 +8,11 @@ import twitterIcon from "assets/icons/twitter.svg";
 import styled from "styled-components";
 import ButtonIcon from "./ButtonIcon";
 
-const BackgroundColorPrimary = styled.div`
+const BackgroundColorNote = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  background: ${({ theme }) => theme.primary};
+  background: ${({ theme }) => theme.note};
 `;
 
 export default {
@@ -21,9 +21,9 @@ export default {
   decorators: [
     withKnobs,
     (Story) => (
-      <BackgroundColorPrimary>
+      <BackgroundColorNote>
         <Story />
-      </BackgroundColorPrimary>
+      </BackgroundColorNote>
     ),
   ],
 };
