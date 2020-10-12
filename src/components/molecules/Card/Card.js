@@ -4,6 +4,7 @@ import styled, { css } from "styled-components";
 import Paragraph from "components/atoms/Paragraph/Paragraph";
 import Heading from "components/atoms/Heading/Heading";
 import Button from "components/atoms/Button/Button";
+import LinkIcon from "assets/icons/link.svg";
 
 const StyledWrapper = styled.div`
   min-height: 380px;
@@ -18,6 +19,11 @@ const StyledWrapper = styled.div`
 const InnerWrapper = styled.div`
   padding: 17px 30px 10px;
   background-color: ${({ activeColor, theme }) => (activeColor ? theme[activeColor] : "white")};
+  position: relative;
+
+  :first-of-type {
+    z-index: 9;
+  }
 
   ${({ flex }) =>
     flex &&
@@ -38,12 +44,42 @@ const StyleHeading = styled(Heading)`
   margin: 5px 0 0;
 `;
 
+const StyledAvatar = styled.img`
+  width: 86px;
+  height: 86px;
+  border: 5px solid ${({ theme }) => theme.twitter};
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  border-radius: 50%;
+`;
+
+const StyledLinkButton = styled.a`
+  width: 47px;
+  display: block;
+  height: 47px;
+  border-radius: 50%;
+  background: white url(${LinkIcon}) no-repeat;
+  background-size: 50%;
+  background-position: 50%;
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+`;
+
 const Card = ({ cardType }) => {
   return (
     <StyledWrapper>
       <InnerWrapper activeColor={cardType}>
         <StyleHeading>Hello amarello</StyleHeading>
         <DateInfo>3 days</DateInfo>
+        {cardType === "twitter" && (
+          <StyledAvatar src="https://unavatar.now.sh/twitter/startrekmovie" />
+        )}
+        {cardType === "article" && (
+          <StyledLinkButton href="https://intl.startrek.com/" target="_blank" />
+        )}
       </InnerWrapper>
       <InnerWrapper flex>
         <Paragraph>
