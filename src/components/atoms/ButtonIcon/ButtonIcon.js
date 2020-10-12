@@ -12,7 +12,7 @@ const ButtonIcon = styled.button`
   border: none;
   background-color: ${({ active }) => (active ? "white" : "transparent")};
 
-  &&:hover {
+  &&.active {
     background-color: white;
   }
 `;

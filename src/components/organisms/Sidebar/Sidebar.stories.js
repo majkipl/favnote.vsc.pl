@@ -18,4 +18,4 @@ export default {
 
 addDecorator(StoryRouter());
 
-export const Normal = () => <Sidebar />;
+export const Normal = () => <Sidebar pageType="notes" />;

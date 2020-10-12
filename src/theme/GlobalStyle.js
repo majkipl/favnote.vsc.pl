@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
         font-size: 16px; /* px fallback */
         font-size: 1.6rem; /* default font-size for document */
         line-height: 1.5; /* a nice line-height */
-
+        padding-left: 150px;
     //color: ${(props) => (props.whiteColor ? "white" : "black")};
     }
 `;
