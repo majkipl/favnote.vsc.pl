@@ -12,8 +12,18 @@ const StyledWrapper = styled.div`
 
 const StyledGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 85px;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 30px 0;
+
+  @media ${({ theme }) => theme.device.lg} {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+  }
+
+  @media ${({ theme }) => theme.device.xl} {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 85px;
+  }
 `;
 
 const StyledPageHeader = styled.div`

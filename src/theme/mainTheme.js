@@ -8,6 +8,7 @@ export const theme = {
   black: "hsl(0, 0%, 0%)",
   light: 300,
   bold: 600,
+
   fontSize: {
     xxs: "1rem",
     xs: "1.2rem",
@@ -15,5 +16,23 @@ export const theme = {
     m: "2.1rem",
     l: "2.4rem",
     xl: "4rem",
+  },
+
+  size: {
+    xs: "320px",
+    sm: "576px",
+    md: "768px",
+    lg: "992px",
+    xl: "1200px",
+    fhd: "1920px",
+  },
+
+  device: {
+    xs: "(min-width: 320px)",
+    sm: "(min-width: 576px)",
+    md: "(min-width: 768px)",
+    lg: "(min-width: 992px)",
+    xl: "(min-width: 1200px)",
+    fhd: "(min-width: 1920px)",
   },
 };
