@@ -1,9 +1,10 @@
 import React from "react";
-import UserPageTemplate from "templates/UserPageTemplate";
+import GridTemplate from "templates/GridTemplate";
 import Card from "components/molecules/Card/Card";
 
 const twitters = [
   {
+    id: 1,
     title: "Hello Roman",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi",
@@ -11,6 +12,7 @@ const twitters = [
     twitterName: "hello_roman",
   },
   {
+    id: 2,
     title: "Redux guy",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi",
@@ -18,6 +20,7 @@ const twitters = [
     twitterName: "dan_abramov",
   },
   {
+    id: 3,
     title: "React router stuff",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi",
@@ -25,6 +28,7 @@ const twitters = [
     twitterName: "mjackson",
   },
   {
+    id: 4,
     title: "Super animacje!",
     content:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi",
@@ -35,18 +39,19 @@ const twitters = [
 
 const Twitters = () => {
   return (
-    <UserPageTemplate pageType="twitter">
-      {twitters.map((item) => (
+    <GridTemplate pageType="twitters">
+      {twitters.map(({ title, content, created, twitterName, id }) => (
         <Card
-          cardType="twitter"
-          title={item.title}
-          content={item.content}
-          twitterName={item.twitterName}
-          created={item.created}
-          key={item.title}
+          cardType="twitters"
+          title={title}
+          content={content}
+          twitterName={twitterName}
+          created={created}
+          key={id}
+          id={id}
         />
       ))}
-    </UserPageTemplate>
+    </GridTemplate>
   );
 };
 

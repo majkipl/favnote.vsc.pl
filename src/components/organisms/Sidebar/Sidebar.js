@@ -50,7 +50,7 @@ const Sidebar = ({ pageType }) => (
     <StyledLogoLink to="/" />
     <StyledLinksList>
       <li>
-        <ButtonIcon exact as={NavLink} to="/" icon={penIcon} activeclass="active" title="Notes" />
+        <ButtonIcon as={NavLink} to="/notes" icon={penIcon} activeclass="active" title="Notes" />
       </li>
       <li>
         <ButtonIcon
@@ -76,7 +76,11 @@ const Sidebar = ({ pageType }) => (
 );
 
 Sidebar.propTypes = {
-  pageType: PropTypes.string.isRequired,
+  pageType: PropTypes.oneOf(["notes", "twitters", "articles"]),
+};
+
+Sidebar.defaultProps = {
+  pageType: "notes",
 };
 
 export default Sidebar;

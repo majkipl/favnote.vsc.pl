@@ -1,5 +1,6 @@
 {
   "extends": ["airbnb", "prettier", "prettier/react"],
+  "parser": "babel-eslint",
   "env": {
     "jest": true
   },
@@ -7,6 +8,7 @@
     "document": true
   },
   "rules": {
+    "no-console": "off",
     "import/prefer-default-export": 0,
     "import/no-unresolved": 1,
     "import/no-extraneous-dependencies": 0,
