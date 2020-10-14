@@ -30,7 +30,19 @@ const mapStateToProps = (state) => {
 };
 
 Notes.propTypes = {
-  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  notes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      cardType: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+      created: PropTypes.string.isRequired,
+    }),
+  ),
+};
+
+Notes.defaultProps = {
+  notes: [],
 };
 
 export default connect(mapStateToProps)(Notes);
