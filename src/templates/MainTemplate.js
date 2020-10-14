@@ -46,22 +46,11 @@ class MainTemplate extends Component {
   }
 }
 
-/*
-= ({ children, ...props }) => {
-  return (
-    <div>
-      <GlobalStyle />
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
-    </div>
-  );
-};
-*/
 MainTemplate.propTypes = {
   children: PropTypes.element.isRequired,
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }),
-  // location: PropTypes.oneOfType(PropTypes.func).isRequired,
 };
 
 MainTemplate.defaultProps = {
