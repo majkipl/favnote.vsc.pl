@@ -94,7 +94,7 @@ class Card extends Component {
           <StyleHeading>{title}</StyleHeading>
           <DateInfo>{created}</DateInfo>
           {cardType === "twitters" && (
-            <StyledAvatar src={`http://twivatar.glitch.me/${twitterName}`} />
+            <StyledAvatar src={`https://unavatar.now.sh/${twitterName}`} />
           )}
           {cardType === "articles" && <StyledLinkButton href={articleUrl} target="_blank" />}
         </InnerWrapper>
