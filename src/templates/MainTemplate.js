@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyle from "theme/GlobalStyle";
 import { theme } from "theme/mainTheme";
 import { withRouter } from "react-router";
+import PageContext from "context";
 
 class MainTemplate extends Component {
   constructor(props) {
@@ -37,31 +38,23 @@ class MainTemplate extends Component {
 
   render() {
     const { children } = this.props;
+    const { pageType } = this.state;
     return (
       <div>
-        <GlobalStyle />
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        <PageContext.Provider value={pageType}>
+          <GlobalStyle />
+          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        </PageContext.Provider>
       </div>
     );
   }
 }
 
-/*
-= ({ children, ...props }) => {
-  return (
-    <div>
-      <GlobalStyle />
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
-    </div>
-  );
-};
-*/
 MainTemplate.propTypes = {
   children: PropTypes.element.isRequired,
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }),
-  // location: PropTypes.oneOfType(PropTypes.func).isRequired,
 };
 
 MainTemplate.defaultProps = {
