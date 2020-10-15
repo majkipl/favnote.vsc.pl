@@ -44,16 +44,16 @@ const StyledParagraph = styled(Paragraph)`
   font-weight: ${({ theme }) => theme.bold};
 `;
 
-const GridTemplate = ({ children, pageType, context }) => (
+const GridTemplate = ({ children, pageContext }) => (
   <>
-    <UserPageTemplate pageType={pageType}>
+    <UserPageTemplate>
       <StyledWrapper>
         <StyledPageHeader>
           <Input search placeholder="Search" />
           <StyledHeading big as="h1">
-            {pageType}
+            {pageContext}
           </StyledHeading>
-          <StyledParagraph>6 {pageType}</StyledParagraph>
+          <StyledParagraph>6 {pageContext}</StyledParagraph>
         </StyledPageHeader>
         <StyledGrid>{children}</StyledGrid>
       </StyledWrapper>
@@ -63,12 +63,11 @@ const GridTemplate = ({ children, pageType, context }) => (
 
 GridTemplate.propTypes = {
   children: PropTypes.arrayOf(PropTypes.object).isRequired,
-  pageType: PropTypes.oneOf(["notes", "twitters", "articles"]),
-  context: PropTypes.string.isRequired,
+  pageContext: PropTypes.oneOf(["notes", "twitters", "articles"]),
 };
 
 GridTemplate.defaultProps = {
-  pageType: "notes",
+  pageContext: "notes",
 };
 
 export default withContext(GridTemplate);

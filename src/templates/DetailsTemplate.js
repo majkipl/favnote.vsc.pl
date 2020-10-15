@@ -6,6 +6,7 @@ import UserPageTemplate from "templates/UserPageTemplate";
 import Button from "components/atoms/Button/Button";
 import Heading from "components/atoms/Heading/Heading";
 import Paragraph from "components/atoms/Paragraph/Paragraph";
+import withContext from "hoc/withContext";
 
 const StyledWrapper = styled.div`
   padding: 25px 150px 25px 70px;
@@ -52,10 +53,10 @@ const StyledImage = styled.img`
   border-radius: 50%;
 `;
 
-const DetailsTemplate = ({ pageType, title, created, content, articleUrl, twitterName }) => {
+const DetailsTemplate = ({ pageContext, title, created, content, articleUrl, twitterName }) => {
   return (
     <>
-      <UserPageTemplate pageType={pageType}>
+      <UserPageTemplate pageType={pageContext}>
         <StyledWrapper>
           <StyledPageHeader>
             <StyledHeading big as="h1">
@@ -66,17 +67,17 @@ const DetailsTemplate = ({ pageType, title, created, content, articleUrl, twitte
 
           <Paragraph>{content}</Paragraph>
 
-          {pageType === "articles" && (
+          {pageContext === "articles" && (
             <StyledLink href={articleUrl} title={title}>
               Open this article
             </StyledLink>
           )}
 
-          {pageType === "twitters" && (
+          {pageContext === "twitters" && (
             <StyledImage alt={title} src={`https://unavatar.now.sh/${twitterName}`} />
           )}
 
-          <Button as={Link} to={`/${pageType}`} activeColor={pageType}>
+          <Button as={Link} to={`/${pageContext}`} activeColor={pageContext}>
             save / close
           </Button>
         </StyledWrapper>
@@ -86,7 +87,7 @@ const DetailsTemplate = ({ pageType, title, created, content, articleUrl, twitte
 };
 
 DetailsTemplate.propTypes = {
-  pageType: PropTypes.string.isRequired,
+  pageContext: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   created: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
@@ -99,4 +100,4 @@ DetailsTemplate.defaultProps = {
   twitterName: "",
 };
 
-export default DetailsTemplate;
+export default withContext(DetailsTemplate);

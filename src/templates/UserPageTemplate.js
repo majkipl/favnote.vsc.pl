@@ -6,20 +6,19 @@ import Sidebar from "components/organisms/Sidebar/Sidebar";
 // import Heading from "components/atoms/Heading/Heading";
 // import Paragraph from "components/atoms/Paragraph/Paragraph";
 
-const UserPageTemplate = ({ children, pageType }) => (
+const UserPageTemplate = ({ children }) => (
   <>
-    <Sidebar pageType={pageType} />
+    <Sidebar />
     {children}
   </>
 );
 
 UserPageTemplate.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]).isRequired,
-  pageType: PropTypes.oneOf(["notes", "twitters", "articles"]),
 };
-
+/*
 UserPageTemplate.defaultProps = {
   pageType: "notes",
 };
-
+*/
 export default UserPageTemplate;
