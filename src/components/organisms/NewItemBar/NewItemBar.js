@@ -17,26 +17,33 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 100px 50px;
-  border-left: 5px solid ${({ theme, activeColor }) => theme[activeColor]};
+  border-left: 10px solid ${({ theme, activeColor }) => theme[activeColor]};
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  transform: translateX(${({ isVisible }) => (isVisible ? "0%" : "100%")});
+  transition: transform 0.3s ease-in-out;
 `;
 
 const StyledTextArea = styled(Input)`
   border-radius: 10px;
   height: 30vh;
-  margin: 30px 0 100px;
+  margin: 0 0 100px;
 `;
 
 const StyledInput = styled(Input)`
   font-size: ${({ theme }) => theme.fontSize.xs};
+  margin: 0 0 30px;
 `;
 
-const NewItemBar = ({ pageContext }) => {
+const NewItemBar = ({ pageContext, isVisible }) => {
   return (
     <>
-      <StyledWrapper activeColor={pageContext}>
+      <StyledWrapper activeColor={pageContext} isVisible={isVisible}>
         <Heading big>Create New {pageContext}</Heading>
-        <StyledInput placeholder="title" />
+        <StyledInput
+          placeholder={pageContext === "twitters" ? "account name eg. reactjs" : "title"}
+        />
+        {pageContext === "articles" && <StyledInput placeholder="link" />}
+
         <StyledTextArea placeholder="Content" as="textarea" />
         <Button activeColor={pageContext}>Add Note</Button>
       </StyledWrapper>
@@ -46,10 +53,12 @@ const NewItemBar = ({ pageContext }) => {
 
 NewItemBar.propTypes = {
   pageContext: PropTypes.oneOf(["notes", "twitters", "articles"]),
+  isVisible: PropTypes.bool,
 };
 
 NewItemBar.defaultProps = {
   pageContext: "notes",
+  isVisible: false,
 };
 
 export default withContext(NewItemBar);
