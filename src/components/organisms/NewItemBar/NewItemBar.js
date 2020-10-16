@@ -7,6 +7,7 @@ import withContext from "hoc/withContext";
 import Heading from "components/atoms/Heading/Heading";
 import { connect } from "react-redux";
 import { addItem as addItemAction } from "actions";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const StyledWrapper = styled.div`
   position: fixed;
@@ -35,24 +36,67 @@ const StyledInput = styled(Input)`
   font-size: ${({ theme }) => theme.fontSize.xs};
   margin: 0 0 30px;
 `;
+const StyledForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+`;
 
-const NewItemBar = ({ pageContext, isVisible, addItem }) => {
+const NewItemBar = ({ pageContext, isVisible, addItem, handleClose }) => {
   return (
     <>
       <StyledWrapper activeColor={pageContext} isVisible={isVisible}>
         <Heading big>Create New {pageContext}</Heading>
-        <StyledInput
-          placeholder={pageContext === "twitters" ? "account name eg. reactjs" : "title"}
-        />
-        {pageContext === "articles" && <StyledInput placeholder="link" />}
-
-        <StyledTextArea placeholder="Content" as="textarea" />
-        <Button
-          onClick={() => addItem(pageContext, { title: "Lorem", content: "Lorem..." })}
-          activeColor={pageContext}
+        <Formik
+          initialValues={{ title: "", content: "", articleUrl: "", twitterName: "", created: "" }}
+          onSubmit={(values) => {
+            console.log(values);
+            addItem(pageContext, values);
+            handleClose();
+          }}
         >
-          Add Note
-        </Button>
+          {({ values, handleChange, handleBlur }) => (
+            <StyledForm>
+              <StyledInput
+                type="text"
+                name="title"
+                placeholder="title"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.title}
+              />
+              {pageContext === "twitters" && (
+                <StyledInput
+                  type="text"
+                  name="twitterName"
+                  placeholder="account name eg. reactjs"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.twitterName}
+                />
+              )}
+              {pageContext === "articles" && (
+                <StyledInput
+                  type="text"
+                  name="articleUrl"
+                  placeholder="link"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.articleUrl}
+                />
+              )}
+              <StyledTextArea
+                name="content"
+                as="textarea"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.content}
+              />
+              <Button type="submit" activeColor={pageContext}>
+                Add Note
+              </Button>
+            </StyledForm>
+          )}
+        </Formik>
       </StyledWrapper>
     </>
   );
@@ -62,6 +106,7 @@ NewItemBar.propTypes = {
   pageContext: PropTypes.oneOf(["notes", "twitters", "articles"]),
   isVisible: PropTypes.bool,
   addItem: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
 NewItemBar.defaultProps = {
