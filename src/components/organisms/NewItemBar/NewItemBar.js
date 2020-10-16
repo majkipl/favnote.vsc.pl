@@ -5,6 +5,8 @@ import Input from "components/atoms/Input/Input";
 import Button from "components/atoms/Button/Button";
 import withContext from "hoc/withContext";
 import Heading from "components/atoms/Heading/Heading";
+import { connect } from "react-redux";
+import { addItem as addItemAction } from "actions";
 
 const StyledWrapper = styled.div`
   position: fixed;
@@ -34,7 +36,7 @@ const StyledInput = styled(Input)`
   margin: 0 0 30px;
 `;
 
-const NewItemBar = ({ pageContext, isVisible }) => {
+const NewItemBar = ({ pageContext, isVisible, addItem }) => {
   return (
     <>
       <StyledWrapper activeColor={pageContext} isVisible={isVisible}>
@@ -45,7 +47,12 @@ const NewItemBar = ({ pageContext, isVisible }) => {
         {pageContext === "articles" && <StyledInput placeholder="link" />}
 
         <StyledTextArea placeholder="Content" as="textarea" />
-        <Button activeColor={pageContext}>Add Note</Button>
+        <Button
+          onClick={() => addItem(pageContext, { title: "Lorem", content: "Lorem..." })}
+          activeColor={pageContext}
+        >
+          Add Note
+        </Button>
       </StyledWrapper>
     </>
   );
@@ -54,6 +61,7 @@ const NewItemBar = ({ pageContext, isVisible }) => {
 NewItemBar.propTypes = {
   pageContext: PropTypes.oneOf(["notes", "twitters", "articles"]),
   isVisible: PropTypes.bool,
+  addItem: PropTypes.func.isRequired,
 };
 
 NewItemBar.defaultProps = {
@@ -61,4 +69,15 @@ NewItemBar.defaultProps = {
   isVisible: false,
 };
 
-export default withContext(NewItemBar);
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (itemType, itemContent) => dispatch(addItemAction(itemType, itemContent)),
+});
+
+/*
+{
+  return {
+    addItem: (itemType, itemContent) => dispatch(addItemAction(itemType, itemContent)),
+  };
+};
+*/
+export default connect(null, mapDispatchToProps)(withContext(NewItemBar));
