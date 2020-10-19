@@ -7,6 +7,8 @@ import Articles from "views/Articles";
 import DetailsPage from "views/DetailsPage";
 import { Provider } from "react-redux";
 import store from "store";
+import LoginPage from "views/LoginPage";
+import RegisterPage from "views/RegisterPage";
 import { routes } from "../routes/index";
 
 const Root = () => {
@@ -16,6 +18,8 @@ const Root = () => {
         <BrowserRouter>
           <MainTemplate>
             <Switch>
+              <Route exact path={routes.login} component={LoginPage} />
+              <Route exact path={routes.register} component={RegisterPage} />
               <Route exact path={routes.home} render={() => <Redirect to="/notes" />} />
               <Route exact path={routes.notes} component={Notes} />
               <Route path={routes.note} component={DetailsPage} />
