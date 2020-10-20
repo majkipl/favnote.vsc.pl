@@ -1,35 +1,45 @@
-import React from "react";
+import React, { Component } from "react";
 import GridTemplate from "templates/GridTemplate";
 import Card from "components/molecules/Card/Card";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { fetchItems } from "actions";
 
-const Twitters = ({ twitters }) => {
-  return (
-    <>
-      <GridTemplate pageType="twitters">
-        {twitters.map(({ title, content, created, twitterName, id }) => (
-          <Card
-            cardType="twitters"
-            title={title}
-            content={content}
-            twitterName={twitterName}
-            created={created}
-            key={id}
-            id={id}
-          />
-        ))}
-      </GridTemplate>
-    </>
-  );
-};
+class Twitters extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-const mapStateToProps = (state) => {
-  // destrukturyzujemy state
-  const { twitters } = state;
+  componentDidMount() {
+    const { fetchTwitters } = this.props;
+    fetchTwitters();
+  }
 
-  return { twitters }; // odpowiednik -> return{ twitters: twitters };
-};
+  render() {
+    const { twitters } = this.props;
+
+    return (
+      <>
+        <GridTemplate pageType="twitters">
+          {twitters.map(({ title, content, created, twitterName, id }) => (
+            <Card
+              cardType="twitters"
+              title={title}
+              content={content}
+              twitterName={twitterName}
+              created={created}
+              key={id}
+              id={id}
+            />
+          ))}
+        </GridTemplate>
+      </>
+    );
+  }
+}
+
+// const Twitters = ({ twitters }) => {};
 
 Twitters.propTypes = {
   twitters: PropTypes.arrayOf(
@@ -42,10 +52,22 @@ Twitters.propTypes = {
       created: PropTypes.string.isRequired,
     }),
   ),
+  fetchTwitters: PropTypes.func.isRequired,
 };
 
 Twitters.defaultProps = {
   twitters: [],
 };
 
-export default connect(mapStateToProps)(Twitters);
+const mapStateToProps = (state) => {
+  // destrukturyzujemy state
+  const { twitters } = state;
+
+  return { twitters }; // odpowiednik -> return{ twitters: twitters };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchTwitters: () => dispatch(fetchItems("twitters")),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Twitters);
