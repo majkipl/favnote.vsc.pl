@@ -87,7 +87,6 @@ class Card extends Component {
       id,
       pageContext,
       title,
-      created,
       articleUrl,
       twitterName,
       content,
@@ -104,7 +103,6 @@ class Card extends Component {
       <StyledWrapper onClick={this.handleCardClick}>
         <InnerWrapper activeColor={pageContext}>
           <StyleHeading>{title}</StyleHeading>
-          <DateInfo>{created}</DateInfo>
           {pageContext === "twitters" && (
             <StyledAvatar src={`https://unavatar.now.sh/${twitterName}`} />
           )}
@@ -124,7 +122,6 @@ class Card extends Component {
 Card.propTypes = {
   pageContext: PropTypes.oneOf(["notes", "twitters", "articles"]),
   title: PropTypes.string.isRequired,
-  created: PropTypes.string.isRequired,
   twitterName: PropTypes.string,
   articleUrl: PropTypes.string,
   content: PropTypes.string.isRequired,
