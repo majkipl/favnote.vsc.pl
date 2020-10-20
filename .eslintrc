@@ -9,6 +9,7 @@
     "document": true
   },
   "rules": {
+    "no-underscore-dangle": "off",
     "no-unused-vars": "off",
     "no-console": "off",
     "import/prefer-default-export": 0,
