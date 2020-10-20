@@ -100,8 +100,8 @@ class Card extends Component {
     }
 
     return (
-      <StyledWrapper onClick={this.handleCardClick}>
-        <InnerWrapper activeColor={pageContext}>
+      <StyledWrapper>
+        <InnerWrapper onClick={this.handleCardClick} activeColor={pageContext}>
           <StyleHeading>{title}</StyleHeading>
           {pageContext === "twitters" && (
             <StyledAvatar src={`https://unavatar.now.sh/${twitterName}`} />
