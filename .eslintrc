@@ -12,10 +12,13 @@
     "no-underscore-dangle": "off",
     "no-unused-vars": "off",
     "no-console": "off",
+
     "import/prefer-default-export": 0,
     "import/no-unresolved": 1,
     "import/no-extraneous-dependencies": 0,
     "react/jsx-props-no-spreading": 0,
+    "react/destructuring-assignment": "off",
+    "react/prop-types": "off",
     "react/jsx-filename-extension": [
       1,
       {
