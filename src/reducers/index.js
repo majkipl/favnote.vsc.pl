@@ -1,5 +1,5 @@
 import {
-  ADD_ITEM,
+  ADD_ITEM_SUCCESS,
   REMOVE_ITEM_REQUEST,
   REMOVE_ITEM_SUCCESS,
   AUTH_SUCCESS,
@@ -13,10 +13,10 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_ITEM:
+    case ADD_ITEM_SUCCESS:
       return {
         ...state,
-        [action.payload.itemType]: [...state[action.payload.itemType], action.payload.item],
+        [action.payload.itemType]: [...state[action.payload.itemType], action.payload.data],
       };
     case REMOVE_ITEM_SUCCESS:
       return {
